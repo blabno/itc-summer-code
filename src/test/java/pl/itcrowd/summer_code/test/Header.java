@@ -1,3 +1,5 @@
+package pl.itcrowd.summer_code.test;
+
 import org.jboss.arquillian.graphene.context.GrapheneContext;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Header {
     @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(3) > a")
     private WebElement marketplaceButton;
 
-    @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(5) > a > href")
+    @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(5) > a")
     private WebElement blogButton;
 
     @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(7) > a")
@@ -108,6 +110,12 @@ public class Header {
         guardHttp(languageMenuPolish).click();
     }
 
+    //Setters
+    public void setSearchInput(String string) {
+        searchInput.clear();
+        searchInput.sendKeys(string);
+    }
+
     //Getters
     public WebElement getVopLogo() {
         return vopLogo;
@@ -155,14 +163,6 @@ public class Header {
 
     public WebElement getLanguageMenuPolish(){
         return languageMenuPolish;
-    }
-
-
-    //Setters
-
-    public void setSearchInput() {
-        searchInput.clear();
-        searchInput.sendKeys("psychic7");
     }
 
     public WebElement getCartAmount() {
