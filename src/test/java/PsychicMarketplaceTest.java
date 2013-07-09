@@ -4,6 +4,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import pl.itcrowd.summer_code.test.Newsletter;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +15,7 @@ public class PsychicMarketplaceTest {
     WebDriver driver;
 
     @FindBy(xpath = "//*[@id=\"wrap\"]/div[2]/div[4]/div[2]")
-    private PsychicMarketplace marketplace;
+    private Newsletter.PsychicMarketplace marketplace;
 
     @Test
     public void testMarketplaceProductClick()

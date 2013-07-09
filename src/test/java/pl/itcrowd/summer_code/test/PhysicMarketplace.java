@@ -1,3 +1,5 @@
+package pl.itcrowd.summer_code.test;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -5,7 +7,7 @@ import java.util.List;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
-public class PsychicMarketplace {
+public class PhysicMarketplace {
 
     @FindBy(tagName = "li")
     private List<Product> products;
