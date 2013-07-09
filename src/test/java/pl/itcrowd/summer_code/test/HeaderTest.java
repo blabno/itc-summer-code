@@ -2,6 +2,7 @@ package pl.itcrowd.summer_code.test;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class HeaderTest {
     @Drone
     WebDriver browser;
 
-    @FindBy(css = "#wrap")
+    @Page
     Header header;
 
     @Before
@@ -56,7 +57,7 @@ public class HeaderTest {
         //when
         header.englishMenuClick();
         //then
-        assertEquals("Psychics", header.getPsychicsButton().getText());
+        assertEquals("Psychics", header.getPsychicButtonText());
     }
 
     @Test
@@ -141,7 +142,7 @@ public class HeaderTest {
         //when
         header.polishMenuClick();
         //then
-        assertEquals("Konsultanci", header.getPsychicsButton().getText());
+        assertEquals("Konsultanci", header.getPsychicButtonText());
     }
 
     @Test

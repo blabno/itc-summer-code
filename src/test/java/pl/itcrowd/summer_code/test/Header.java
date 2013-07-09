@@ -8,14 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 import static org.jboss.arquillian.graphene.Graphene.waitGui;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Wybraniec
- * Date: 04.07.13
- * Time: 08:23
- * To change this template use File | Settings | File Templates.
- */
-
 public class Header {
 
     @FindBy(css = "div.row-fluid.logoWrapper")
@@ -109,71 +101,11 @@ public class Header {
         waitGui().until().element(languageMenuPolish).is().visible();
         guardHttp(languageMenuPolish).click();
     }
-
-    //Setters
-    public void setSearchInput(String string) {
+    public void setSearchInput(String string){
         searchInput.clear();
         searchInput.sendKeys(string);
     }
-
-    //Getters
-    public WebElement getVopLogo() {
-        return vopLogo;
-    }
-
-    public WebElement getPsychicsButton() {
-        return psychicsButton;
-    }
-
-    public WebElement getMarketplaceButton() {
-        return marketplaceButton;
-    }
-
-    public WebElement getBlogButton() {
-        return blogButton;
-    }
-
-    public WebElement getMyaccountButton() {
-        return myaccountButton;
-    }
-
-    public WebElement getSearchInput() {
-        return searchInput;
-    }
-
-    public WebElement getSearchConfirmButton() {
-        return searchConfirmButton;
-    }
-
-    public WebElement getLoginButton() {
-        return loginButton;
-    }
-
-    public WebElement getSignupButton() {
-        return signupButton;
-    }
-
-    public WebElement getShoppingcartButton() {
-        return shoppingcartButton;
-    }
-
-    public WebElement getLanguageMenuEnglish(){
-        return  languageMenuEnglish;
-    }
-
-    public WebElement getLanguageMenuPolish(){
-        return languageMenuPolish;
-    }
-
-    public WebElement getCartAmount() {
-        return cartAmount;
-    }
-
-    public WebElement getItemToBuy() {
-        return itemToBuy;
-    }
-
-    public WebElement getItemToAddToCart() {
-        return itemToAddToCart;
+    public String getPsychicButtonText(){
+        return psychicsButton.getText();
     }
 }

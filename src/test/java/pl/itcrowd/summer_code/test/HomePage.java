@@ -15,10 +15,10 @@ import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
 public class HomePage {
 
-    @FindBy(css = "div.alert  a")
+    @FindBy(css = " #wrap div.alert  a")
     private WebElement registerToGet3Minutes;
 
-    @FindBy(css = "div:nth-of-type(2) div:nth-of-type(5) div.span12 a img")
+    @FindBy(css = " #wrap div:nth-of-type(2) div:nth-of-type(5) div.span12 a img")
     private WebElement areYouPsychicJoin;
 
     public void registerToGet3MinutesClick(){

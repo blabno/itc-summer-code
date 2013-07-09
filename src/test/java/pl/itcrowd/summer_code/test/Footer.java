@@ -40,11 +40,11 @@ public class Footer {
 
     @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(2) > a")
     private WebElement connectWithUsByTwitter;
-    ////*[@id="footerContent"]/div[2]/div[4]/div[3]/a
-    @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(3)  a")
+
+    @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(3) > a")
     private WebElement connectWithUsByPinterest;
 
-    @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(4)  a  img")
+    @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(4) > a")
     private WebElement connectWithUsByYT;
 
     public void helpButtonClick(){
@@ -79,49 +79,5 @@ public class Footer {
     }
     public void connectWithUsByYTClick(){
         guardHttp(connectWithUsByYT).click();
-    }
-    //Getters
-    public WebElement getHelpButton() {
-        return helpButton;
-    }
-
-    public WebElement getAboutUsButton() {
-        return aboutUsButton;
-    }
-
-    public WebElement getHowItWorksButton() {
-        return howItWorksButton;
-    }
-
-    public WebElement getAboutPsychicReadingsButton() {
-        return aboutPsychicReadingsButton;
-    }
-
-    public WebElement getContactUsButton() {
-        return contactUsButton;
-    }
-
-    public WebElement getPrivacyPolicyButton() {
-        return privacyPolicyButton;
-    }
-
-    public WebElement getTermsConditionsButton() {
-        return termsConditionsButton;
-    }
-
-    public WebElement getConnectWithUsByFB() {
-        return connectWithUsByFB;
-    }
-
-    public WebElement getConnectWithUsByTwitter() {
-        return connectWithUsByTwitter;
-    }
-
-    public WebElement getConnectWithUsByPinterest() {
-        return connectWithUsByPinterest;
-    }
-
-    public WebElement getConnectWithUsByYT() {
-        return connectWithUsByYT;
     }
 }

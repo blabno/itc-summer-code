@@ -2,6 +2,7 @@ package pl.itcrowd.summer_code.test;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class FooterTest {
     @Drone
     WebDriver browser;
 
-    @FindBy(css = "#footer")
+    @Page
     Footer footer;
 
     @Before
