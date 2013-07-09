@@ -1,3 +1,5 @@
+package pl.itcrowd.summer_code.test;
+
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 

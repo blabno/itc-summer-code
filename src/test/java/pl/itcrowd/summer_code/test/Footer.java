@@ -1,3 +1,5 @@
+package pl.itcrowd.summer_code.test;
+
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 
@@ -27,10 +29,10 @@ public class Footer {
     @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(2) > small > a")
     private WebElement contactUsButton;
 
-    @FindBy(css = "[id='footerContent'] div:nth-of-type(3) small:nth-of-type(1) > small > a")
+    @FindBy(css = "[id='footerContent'] div:nth-of-type(3) small:nth-of-type(1) > a")
     private WebElement privacyPolicyButton;
 
-    @FindBy(css = "[id='footerContent'] div:nth-of-type(3) small:nth-of-type(2) > small > a")
+    @FindBy(css = "[id='footerContent'] div:nth-of-type(3) small:nth-of-type(2) > a")
     private WebElement termsConditionsButton;
 
     @FindBy(css = "[id='footerContent'] div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(1) > a")

@@ -48,7 +48,11 @@ public class User {
 
         User user = (User) o;
 
-        return !(id != null ? !id.equals(user.id) : user.id != null);
+        if (!(id != null ? !id.equals(user.id) : user.id != null)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
