@@ -1,17 +1,33 @@
 package pl.itcrowd.summer_code.test;
 
-import junit.framework.Assert;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 @RunWith(Arquillian.class)
 public class UserBoxTest {
 
+    @FindBy(css = ".grayBorderedPanel:nth-of-type(1)")
+    UserBox psychic7;
 
+    @FindBy(css = "#j_idt78")
+    UserBox otherUsers;
+
+    @Drone
+    WebDriver browser;
+
+    @Before
+    public void beforeTests(){
+
+    }
     /**
      * TERMS
      * UserBox 1 in Top Psychics should contain a short description of Top Psychic
@@ -22,9 +38,37 @@ public class UserBoxTest {
      * EXPECTED VALUES
      * Check if Description of Top Psychic contain a short description of Psychic
      */
+
     @Test
     public void testDesrtiption(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        String text = psychic7.getDescriptionText();
+        //Then
+        assertEquals("I am Nature Born Psychic and Spiritual Messenger, Contact me for Honest reading.", text);
+
+    }
+
+    /**
+     * TERMS
+     * Test of click on Read More link for navigate to Top Psychic profile page
+     *
+     * SCENARIO
+     * 1.Open the Homepage
+     * 2.Click on Read More link in User Box
+     *
+     * EXPECTED VALUES
+     * Check if currentUrl is correct
+     */
+    @Test
+    public void testReadMoreClick(){
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        psychic7.readMoreClick();
+        //Then
+        assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/Psychic7"));
     }
 
     /**
@@ -39,7 +83,12 @@ public class UserBoxTest {
      */
     @Test
     public void testPrice(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        String price = psychic7.getPriceValue();
+        //Then
+        assertEquals("$ 0.50 / min", price);
     }
 
     /**
@@ -57,7 +106,12 @@ public class UserBoxTest {
      */
     @Test
     public void testStatus(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        boolean status = psychic7.statusOnline();
+        //Then
+        assertFalse(status);
     }
 
     /**
@@ -72,7 +126,14 @@ public class UserBoxTest {
      */
     @Test
     public void testNickname(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        String userName = psychic7.getNameInfo();
+        boolean checkEmpty = false;
+        if(userName.isEmpty()) checkEmpty = true;
+        //Then
+        assertFalse(checkEmpty);
     }
 
     /**
@@ -87,8 +148,13 @@ public class UserBoxTest {
      * Check if current url is correct
      */
     @Test
-    public void testNicknmeClick(){
-        Assert.fail("Not implemented yet");
+    public void testNicknameClick(){
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        psychic7.nameClick();
+        //Then
+        assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/Psychic7"));
     }
 
     /**
@@ -104,7 +170,12 @@ public class UserBoxTest {
      */
     @Test
     public void testImageClick(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        psychic7.imageClick();
+        //Then
+        assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/Psychic7"));
     }
 
     /**
@@ -119,24 +190,13 @@ public class UserBoxTest {
      * Check if currentUrl is correct
      */
     @Test
-    public void testEmailCLick(){
-        Assert.fail("Not implemented yet");
-    }
-
-    /**
-     * TERMS
-     * Test of click on Read More link for navigate to Top Psychic profile page
-     *
-     * SCENARIO
-     * 1.Open the Homepage
-     * 2.Click on Read More link in User Box
-     *
-     * EXPECTED VALUES
-     * Check if currentUrl is correct
-     */
-    @Test
-    public void testReadMoreClick(){
-        Assert.fail("Not implemented yet");
+    public void testEmailClick(){
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        psychic7.emailClick();
+        //Then
+        assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private/createMessage?userId=7"));
     }
 
     /**
@@ -151,6 +211,36 @@ public class UserBoxTest {
      */
     @Test
     public void testCountUserBox(){
-        Assert.fail("Not implemented yet");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
+        String [] userNames = new String[6];
+        boolean check = false;
+        userNames[0] = psychic7.getNameInfo();
+        if(!(userNames[0].isEmpty())){
+            check = true;
+        }
+        userNames[1] = otherUsers.getMax1Name();
+        if(!(userNames[1].isEmpty())){
+            check = true;
+        }
+        userNames[2] = otherUsers.getPeterName();
+        if(!(userNames[2].isEmpty())){
+            check = true;
+        }
+        userNames[3] = otherUsers.getPsychic5Name();
+        if(!(userNames[3].isEmpty())){
+            check = true;
+        }
+        userNames[4] = otherUsers.getKrzysztof52Name();
+        if(!(userNames[4].isEmpty())){
+            check = true;
+        }
+        userNames[5] = otherUsers.getPsychic4Name();
+        if(!(userNames[5].isEmpty())){
+            check = true;
+        }
+        //Then
+        assertTrue(check);
     }
 }

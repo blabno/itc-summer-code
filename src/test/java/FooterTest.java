@@ -27,68 +27,101 @@ public class FooterTest {
     }
     @Test
     public void testHelpButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/view/help.jsf?content=LOGIN_SIGNUP_CUSTOMER&mode=CUSTOMER");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.helpButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/view/help.jsf?content=LOGIN_SIGNUP_CUSTOMER&mode=CUSTOMER"));
     }
     @Test
     public void testAboutUsButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/page/ABOUT");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.aboutUsButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/page/ABOUT"));
     }
     @Test
     public void testHowItWorksButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/view/help.jsf?content=LOGIN_SIGNUP_CUSTOMER&mode=CUSTOMER");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.howItWorksButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/view/help.jsf?content=LOGIN_SIGNUP_CUSTOMER&mode=CUSTOMER"));
     }
     @Test
     public void testAboutPsychicReadingsButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/page/PSYCHIC_READING");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.aboutPsychicReadingsButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/page/PSYCHIC_READING"));
     }
     @Test
     public void testContactUsButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/contact");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.contactUsButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/contact"));
     }
     @Test
     public void testPrivacyPolicyButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/page/PRIVACY_POLICY");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.privacyPolicyButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/page/PRIVACY_POLICY"));
     }
     @Test
     public void testTermsConditionsButton(){
-        browser.navigate().to("https://itcrowd.pl/vop/page/TERMS");
+        //Given
+        browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.termsConditionsButtonClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/page/TERMS"));
     }
     @Test
     public void testConnectWithUsByFB(){
+        //Given
         browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.connectWithUsByFBClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://www.facebook.com/PsychicMarketplace"));
     }
     @Test
     public void testConnectWithUsByTwitter(){
+        //Given
         browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.connectWithUsByTwitterClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://twitter.com/voiceofpsychic"));
     }
     @Test
     public void testConnectWithUsByPinterest(){
+        //Given
         browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.connectWithUsByPinterestClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("http://pinterest.com/voiceofpsychic/"));
     }
     @Test
     public void testConnectWithUsByYT(){
+        //Given
         browser.navigate().to("https://itcrowd.pl/vop/");
+        //When
         footer.connectWithUsByYTClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://www.youtube.com/voiceofpsychic"));
     }
 

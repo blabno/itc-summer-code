@@ -24,20 +24,33 @@ public class HomePageTest {
     WebDriver browser;
     @Before
     public void beforeTests(){
-
+        browser.navigate().to("https://itcrowd.pl/vop/");
     }
 
     @Test
     public void testRegisterToGet3Minutes(){
-        browser.navigate().to("https://itcrowd.pl/vop/");
+        //Given
+        //URL of the main page is given in @Before
+        //When
         homePage.registerToGet3MinutesClick();
-        //assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/register"));
+        //Then
         assertEquals("https://itcrowd.pl/vop/register",browser.getCurrentUrl());
     }
     @Test
     public void testAreYouPsychicJoin(){
-        browser.navigate().to("https://itcrowd.pl/vop/");
+        //Given
+        //URL of the main page is given in @Before
+        //When
         homePage.areYouPsychicJoinClick();
+        //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/view/registerPsychic.jsf"));
+    }
+    @Test
+    public void testFbLikeItButton(){
+        //Given
+
+        //When
+
+        //Then
     }
 }

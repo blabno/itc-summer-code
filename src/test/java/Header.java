@@ -19,7 +19,7 @@ public class Header {
     @FindBy(css = "div.row-fluid.logoWrapper")
     private WebElement vopLogo;
 
-    @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(1) > a")
+    @FindBy(css= "div:nth-of-type(1) div div div:nth-of-type(2) div:nth-of-type(2) div div div div ul li:nth-of-type(1) a")
     private WebElement psychicsButton;
 
     @FindBy(css= "div.span12 div:nth-of-type(2) ul.nav > li:nth-of-type(3) > a")

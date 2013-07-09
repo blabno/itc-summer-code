@@ -43,7 +43,7 @@ public class HomePage {
      */
     //Subclass in HomePageClass, represents socials share menu below banner.
     public static class SocialsSharesMenu {
-        ////*[@id="u_0_0"]/div/div[1]/div/span
+
         @FindBy(css = "div.pluginConnectButton div div button span")
         private WebElement fbLikeItButton;
 
@@ -62,8 +62,11 @@ public class HomePage {
         @FindBy(xpath = "//*[@id=\"wrap\"]/div[2]/div[2]/div[2]/div/a[4]/a[1]")
         private WebElement shareOnSubMenu;
 
+        public void fbLikeItButtonClick(){
+            guardHttp(fbLikeItButton).click();
+        }
 
-
+        //Getters
         public WebElement getFbLikeItButton() {
             return fbLikeItButton;
         }

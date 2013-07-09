@@ -31,6 +31,7 @@ public class HeaderTest {
     public void testVopLogoClick(){
         //Given
         //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.vopLogoClick();
         //Then
@@ -39,7 +40,7 @@ public class HeaderTest {
     @Test
     public void testPsychicsButtonClick(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.psychicsButtonClick();
         //Then
@@ -48,7 +49,7 @@ public class HeaderTest {
     @Test
     public void testMarketplaceButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.marketplaceButtonClick();
         //Then
@@ -57,7 +58,7 @@ public class HeaderTest {
     @Test
     public void testBlogButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.blogButtonClick();
         //Then
@@ -66,7 +67,7 @@ public class HeaderTest {
     @Test
     public void testMyaccountButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.myaccountButtonClick();
         //Then
@@ -75,7 +76,7 @@ public class HeaderTest {
     @Test
     public void testSearchInputField(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.setSearchInput();
         header.searchConfirmButtonClick();
@@ -85,7 +86,7 @@ public class HeaderTest {
     @Test
     public void testSearchConfirmButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.searchConfirmButtonClick();
         //Then
@@ -94,7 +95,7 @@ public class HeaderTest {
     @Test
     public void testLoginButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.loginButtonClick();
         //Then
@@ -103,7 +104,7 @@ public class HeaderTest {
     @Test
     public void testSignUpButton(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.signUpButtonClick();
         //Then
@@ -112,7 +113,7 @@ public class HeaderTest {
     @Test
     public void testShoppingCartClick(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.shoppingCartButtonClick();
         //Then
@@ -121,7 +122,7 @@ public class HeaderTest {
     @Test
     public void testEnglishMenuClick(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.englishMenuClick();
         //Then
@@ -130,7 +131,7 @@ public class HeaderTest {
     @Test
     public void testPolishMenuClick(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.polishMenuClick();
         //Then
@@ -139,7 +140,7 @@ public class HeaderTest {
     @Test
     public void testCartAmount(){
         //Given
-        //URL of the main page is given in @Before
+        browser.navigate().to("https://itcrowd.pl/vop/");
         //When
         header.marketplaceButtonClick();
         header.itemToBuyClick();
