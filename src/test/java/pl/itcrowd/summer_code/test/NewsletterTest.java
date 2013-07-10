@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 @RunWith(Arquillian.class)
-public class NewsletterTest3 {
+public class NewsletterTest {
 
     @Drone
     WebDriver driver;
@@ -22,6 +22,19 @@ public class NewsletterTest3 {
     private Newsletter newsletter;
 
     @Test
+    /**
+     * TERMS:
+     * Type email twice the same
+     *
+     * SCENARIO:
+     * 1. Type email into input field
+     * 2. Press 'enter' key or click on 'sign up'
+     * 3. Type same email again
+     *
+     * EXPECTED:
+     * AssertEquals("Sorry, but mail cannot be send", popup.getText())
+     *
+     */
     public void twoSameEmailToSubscibeTest(){
 
         //given
@@ -35,6 +48,18 @@ public class NewsletterTest3 {
         assertEquals("Sorry, but mail can not be send, try later", newsletter.getPopUpText());
     }
     @Test
+    /**
+     * TERMS:
+     * Input is empty, don't type anything
+     *
+     * SCENARIO:
+     * 1. Don't type anything
+     * 2. Click "Sign in" button or press enter key
+     *
+     * EXPECTED:
+     * AssertEquals("Enter your email here to subscribe" ,popup.getText())
+     *
+     */
     public void emptyStringInInputTest(){
         //given
         driver.navigate().to("https://itcrowd.pl/vop/");
@@ -45,6 +70,17 @@ public class NewsletterTest3 {
         assertEquals("Enter your email here to subscribe", newsletter.getPopUpText());
     }
     @Test
+    /**
+     * TERMS:
+     * Input some email wrong, e. g. without "@" symbol
+     *
+     * SCENARIO:
+     * 1. Input random text e.g. "bwhhs"
+     * 2. Hit enter
+     *
+     * EXPECTED
+     * AssertEquals("not well-formed email address", popup.getText())
+     */
     public void isEmailCorrectTest()
     {
         //given
@@ -56,6 +92,17 @@ public class NewsletterTest3 {
         assertEquals("not a well-formed email address", newsletter.getPopUpText());
     }
     @Test
+    /**
+     * TERMS:
+     * Type some correct email address
+     *
+     * SCENARIO:
+     * 1. Type email
+     * 2. Hit enter key
+     *
+     * EXPECTED:
+     * AssertEquals("Your email has been added", popup.getText())
+     */
     public void isEmailHasBeenAddedTest(){
         //given
         driver.navigate().to("https://itcrowd.pl/vop/");

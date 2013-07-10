@@ -2,6 +2,7 @@ package pl.itcrowd.summer_code.test;
 
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +11,31 @@ import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-public class PhysicMarketplaceTest3 {
+public class PhysicMarketplaceTest {
+
+//    @FindBy (xpath = "//*[@id=\"wrap\"]/div[2]/div[4]/div[2]")
+//    public PhysicMarketplace marketplace;
+
+    @Page
+    public PhysicMarketplace marketplace;
 
     @Drone
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"wrap\"]/div[2]/div[4]/div[2]")
-    private PhysicMarketplace marketplace;
-
-
     @Test
+    /**
+     * TERMS:
+     * User can click on one of products
+     * This link provide to "https://itcrowd.pl/vop/product/productID
+     *
+     * SCENARIO:
+     * 1. Press one of products
+     * 2. Check if page "https://itcrowd.pl/vop/product/productID" has been reached
+     *
+     * EXPECTED:
+     * Test are correct if expected page and current page after click are equals
+     * If we click on the product with id 61, displayed page must be "https://itcrowd.pl/vop/product/61"
+     */
     public void productsEnterTest(){
 
         //given
@@ -27,9 +43,22 @@ public class PhysicMarketplaceTest3 {
         //when
         marketplace.clickProduct(0);
         //then
-        assertEquals("https://itcrowd.pl/vop/product/62", driver.getCurrentUrl());
+        assertEquals("https://itcrowd.pl/vop/product/64", driver.getCurrentUrl());
     }
 
+    /**
+     * TERMS:
+     * This method checks if there is 6 products with images in all 16 products.
+     * src must be checked to do this
+     *
+     * SCENARIO:
+     * 1. Go to the main page
+     * 2. Check thumbnails id's
+     *
+     * EXPECTED:
+     * Thumbnails are different to each other only by id
+     * So, assertions must check that each 'n' every thumbnail has expected id
+     */
     @Test
     public void productsShowedImageTest(){
     //given
@@ -37,7 +66,7 @@ public class PhysicMarketplaceTest3 {
     //when
 
     //then
-    assertEquals(62, marketplace.getProductId(0));
+    assertEquals(64, marketplace.getProductId(0));
     assertEquals(61, marketplace.getProductId(1));
     assertEquals(60, marketplace.getProductId(2));
     assertEquals(56, marketplace.getProductId(3));

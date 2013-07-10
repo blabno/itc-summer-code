@@ -1,5 +1,6 @@
 package pl.itcrowd.summer_code.test;
 
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,7 +10,9 @@ import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
 public class PhysicMarketplace {
 
-    @FindBy(tagName = "li")
+
+
+    @FindBy(css = "div.span9 li")
     private List<Product> products;
 
     public int getProductId(int productNumber)
