@@ -3,6 +3,8 @@ package pl.itcrowd.summer_code.test;
 import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
 /**
@@ -12,7 +14,10 @@ import static org.jboss.arquillian.graphene.Graphene.guardHttp;
  * Time: 08:13
  * To change this template use File | Settings | File Templates.
  */
-public class UserBox {
+public class TopPsychic {
+
+    @FindBy(className = "grayBorderedPanel")
+    private List<TopPsychic> topPsychics;
 
     @FindBy(css = "[id$=':description']")
     private WebElement description;
@@ -35,83 +40,30 @@ public class UserBox {
     @FindBy(css = "[id = 'row_0'] div div:nth-of-type(2) div span a img")
     private WebElement image;
 
-    @FindBy(css = "[id$=':nickname2']")
-    private WebElement max1Name;
-
-    @FindBy(css = "[id$=':nickname3']")
-    private WebElement peterName;
-
-    @FindBy(css = "[id = 'row_3'] div div h4 span")
-    private WebElement psychic5Name;
-
-    @FindBy(css = "[id = 'row_3'] div:nth-of-type(2) div h4 span")
-    private WebElement krzysztof52Name;
-
-    @FindBy(css = "[id = 'row_3'] div:nth-of-type(3) div h4 span")
-    private WebElement psychic4Name;
-
-    //Getters
-    public WebElement getImage(){
-        return image;
-    }
-
-    public WebElement getDescription() {
-        return description;
-    }
-
-    public String getDescriptionText()
+    public String getDescription()
     {
         return description.getText();
     }
 
-    public WebElement getEmail() {
-        return email;
-    }
-
-    public WebElement getName() {
-        return name;
-    }
-
-    public String getNameInfo()
+    public String getName()
     {
         return name.getText();
     }
 
-    public WebElement getPrice() {
-        return price;
-    }
-
-    public String getPriceValue()
+    public String getPrice()
     {
         return price.getText();
     }
-    public String getMax1Name() {
-        return max1Name.getText();
+
+    public TopPsychic getTopPsychic(int index)
+    {
+        return topPsychics.get(index);
     }
 
-    public String getPeterName() {
-        return peterName.getText();
+    public int getTopPsychicsSize()
+    {
+        return topPsychics.size();
     }
-
-    public String getPsychic5Name() {
-        return psychic5Name.getText();
-    }
-
-    public String getKrzysztof52Name() {
-        return krzysztof52Name.getText();
-    }
-
-    public String getPsychic4Name() {
-        return psychic4Name.getText();
-    }
-
-    public WebElement getReadMore() {
-        return readMore;
-    }
-    public WebElement getStatus() {
-        return status;
-    }
-    //Methods
 
     public void emailClick()
     {
@@ -136,6 +88,4 @@ public class UserBox {
     public void imageClick(){
         guardHttp(image).click();
     }
-
-
 }
