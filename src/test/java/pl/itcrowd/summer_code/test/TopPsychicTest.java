@@ -147,7 +147,7 @@ public class TopPsychicTest {
         //Given
         browser.navigate().to("https://itcrowd.pl/vop/");
         //When
-        topPsychic.getTopPsychic(0).nameClick();
+        topPsychic.getTopPsychic(2).nameClick();
         //Then
         assertTrue(browser.getCurrentUrl().startsWith("https://itcrowd.pl/vop/Psychic7"));
     }
