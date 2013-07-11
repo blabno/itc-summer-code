@@ -41,9 +41,9 @@ public class PhysicMarketplaceTest {
         //given
         driver.navigate().to("https://itcrowd.pl/vop/");
         //when
-        marketplace.clickProduct(0);
+        marketplace.clickProduct(3);
         //then
-        assertEquals("https://itcrowd.pl/vop/product/64", driver.getCurrentUrl());
+        assertEquals("https://itcrowd.pl/vop/product/61", driver.getCurrentUrl());
     }
 
     /**
@@ -67,21 +67,21 @@ public class PhysicMarketplaceTest {
 
     //then
     assertEquals(64, marketplace.getProductId(0));
-    assertEquals(61, marketplace.getProductId(1));
-    assertEquals(60, marketplace.getProductId(2));
-    assertEquals(56, marketplace.getProductId(3));
-    assertEquals(55, marketplace.getProductId(4));
-    assertEquals(54, marketplace.getProductId(5));
-    assertEquals(53, marketplace.getProductId(6));
-    assertEquals(52, marketplace.getProductId(7));
-    assertEquals(51, marketplace.getProductId(8));
-    assertEquals(50, marketplace.getProductId(9));
-    assertEquals(9, marketplace.getProductId(10));
-    assertEquals(8, marketplace.getProductId(11));
-    assertEquals(7, marketplace.getProductId(12));
-    assertEquals(6, marketplace.getProductId(13));
-    assertEquals(5, marketplace.getProductId(14));
-    assertEquals(4, marketplace.getProductId(15));
+    assertEquals(63, marketplace.getProductId(1));
+    assertEquals(62, marketplace.getProductId(2));
+    assertEquals(61, marketplace.getProductId(3));
+    assertEquals(60, marketplace.getProductId(4));
+    assertEquals(56, marketplace.getProductId(5));
+    assertEquals(55, marketplace.getProductId(6));
+    assertEquals(54, marketplace.getProductId(7));
+    assertEquals(53, marketplace.getProductId(8));
+    assertEquals(52, marketplace.getProductId(9));
+    assertEquals(51, marketplace.getProductId(10));
+    assertEquals(50, marketplace.getProductId(11));
+    assertEquals(9, marketplace.getProductId(12));
+    assertEquals(8, marketplace.getProductId(13));
+    assertEquals(7, marketplace.getProductId(14));
+    assertEquals(6, marketplace.getProductId(15));
 
     }
 }
