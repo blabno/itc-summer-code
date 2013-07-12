@@ -160,7 +160,7 @@ public class MarketplaceTest {
      * EXPECTED
      * Marketplace page will showed products in category 'antique'*/
     @Test
-    public void goToantiqueTest(){
+    public void goToAntiqueTest(){
 
     }
     /**TERMS
