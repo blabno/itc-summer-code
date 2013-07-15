@@ -37,6 +37,7 @@ public class MarketplaceTest {
      @Test
      public void sortByAZtest(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -59,6 +60,7 @@ public class MarketplaceTest {
      @Test
      public void sortByZAtest(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -80,6 +82,7 @@ public class MarketplaceTest {
      @Test
      public void sortByPriceAscTest(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -101,6 +104,7 @@ public class MarketplaceTest {
      @Test
      public void sortByPriceDscTest(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -122,6 +126,7 @@ public class MarketplaceTest {
      @Test
      public void show16test(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -143,6 +148,7 @@ public class MarketplaceTest {
      @Test
      public void show20test(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -164,6 +170,7 @@ public class MarketplaceTest {
      @Test
      public void show24test(){
          //Given
+         browser.manage().deleteAllCookies();
          browser.navigate().to("https://itcrowd.pl/vop/login");
          loginPage.setEmailInput("customertest2@itcrowd.pl");
          loginPage.setPasswordInput("aaaaaa");
@@ -185,6 +192,7 @@ public class MarketplaceTest {
     @Test
     public void nextPageTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -207,6 +215,7 @@ public class MarketplaceTest {
     @Test
     public void numberOfpageTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -229,6 +238,7 @@ public class MarketplaceTest {
     @Test
     public void goTobBathAndBeautyTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -250,6 +260,7 @@ public class MarketplaceTest {
     @Test
     public void goToBathAndBodyTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -271,6 +282,7 @@ public class MarketplaceTest {
     @Test
     public void goToCandlesClick(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -292,6 +304,7 @@ public class MarketplaceTest {
     @Test
     public void goToAccessoriesTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -313,6 +326,7 @@ public class MarketplaceTest {
     @Test
     public void goToJewelryTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -334,6 +348,7 @@ public class MarketplaceTest {
     @Test
     public void goToEverythingElseTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -355,6 +370,7 @@ public class MarketplaceTest {
     @Test
     public void goToAntiqueTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -376,6 +392,7 @@ public class MarketplaceTest {
     @Test
     public void goToBooksTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -397,6 +414,7 @@ public class MarketplaceTest {
     @Test
     public void goToEbooksTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -418,6 +436,7 @@ public class MarketplaceTest {
     @Test
     public void goToPaperBooksTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -439,6 +458,7 @@ public class MarketplaceTest {
     @Test
     public void goToAudioBooksTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -460,6 +480,7 @@ public class MarketplaceTest {
     @Test
     public void thumbnailTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
@@ -481,6 +502,7 @@ public class MarketplaceTest {
     @Test
     public void tagTest(){
         //Given
+        browser.manage().deleteAllCookies();
         browser.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customertest2@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");

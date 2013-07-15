@@ -79,7 +79,7 @@ public class Marketplace {
     @FindBy(css = ".well ul li:nth-of-type(10) a")
     private WebElement eBooksSubcategoryLink;
 
-    @FindBy(css = "#.well ul li:nth-of-type(11) a")
+    @FindBy(css = ".well ul li:nth-of-type(11) a")
     private WebElement paperBooksSubcategoryLink;
 
     @FindBy(css = ".well ul li:nth-of-type(12) a")

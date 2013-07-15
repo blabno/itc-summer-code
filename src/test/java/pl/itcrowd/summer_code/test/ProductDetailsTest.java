@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 
 import static junit.framework.Assert.*;
 
-
 @RunWith(Arquillian.class)
 public class ProductDetailsTest {
 

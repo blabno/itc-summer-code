@@ -100,9 +100,6 @@ public class ProductDetails {
         return chatForFreeClicked.getText();
     }
 
-    public String getWrongQuantityModal(){
-        return wrongQuantityModal.getText();
-    }
     public void clickBuyMoreCreditsBtn(){
         waitGui().until().element(buyMoreCreditsBtn).is().visible();
         buyMoreCreditsBtn.click();
@@ -137,6 +134,11 @@ public class ProductDetails {
         else
             return false;
     }
+
+    public String getWrongQuantityModal(){
+        return wrongQuantityModal.getText();
+    }
+    
 
     String getCountryOfSeller(){
         return countryOfSeller.getText();
