@@ -4,6 +4,7 @@ import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
+import static org.jboss.arquillian.graphene.Graphene.guardXhr;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,7 +33,7 @@ public class MyProfile {
     }
 
     public void saveButtonClick(){
-        guardHttp(saveButton).click();
+        guardXhr(saveButton).click();
     }
 
     public void changePictureButtonClick(){

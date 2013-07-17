@@ -20,7 +20,7 @@ public class ProductDetails {
     @FindBy(css = "div.span10 .well")
     private WebElement description;
 
-    @FindBy(className = "div.span3 div.well div.marginBottom10 .pull-right")
+    @FindBy(css = "div.span3 div.well div.marginBottom10 .pull-right")
     private WebElement readMore;
 
     @FindBy(css = "div.span12 btn-link")
@@ -32,7 +32,7 @@ public class ProductDetails {
     @FindBy(css = "div.span3 .addToCart")
     private WebElement addToCart;
 
-    @FindBy(className = "div.span3 .quantity")
+    @FindBy(css = "div.span3 .quantity")
     private WebElement quantity;
 
     @FindBy(css = "div.rf-ntf-cnt")

@@ -18,7 +18,7 @@ public class LoginPage {
     @FindBy(css = "#lF div.form-actions > input")
     private WebElement submitButton;
 
-    @FindBy(css = "#row-fluid form.headerForm ul:nth-of-type(1) li:nth-of-type(3) > a")
+    @FindBy(css = "div.row-fluid form:nth-of-type(1) ul li:nth-of-type(3)")
     private WebElement welcomeUserButton;
 
     @FindBy(id = "lF:e:message1")
@@ -49,13 +49,13 @@ public class LoginPage {
     }
     public void setPasswordInput(String password){
         passwordInput.clear();
-        emailInput.sendKeys(password);
+        passwordInput.sendKeys(password);
     }
     public void submitButtonClick(){
         guardHttp(submitButton).click();
     }
     public boolean isLoggedIn(){
-        return welcomeUserButton.isDisplayed();
+        return welcomeUserButton.getText().startsWith("Welcome");
     }
     public boolean isEmptyEmailMessageDisplayed(){
         return emptyEmailInputMessage.isDisplayed();

@@ -16,16 +16,16 @@ import static org.jboss.arquillian.graphene.Graphene.guardHttp;
  */
 public class Cart {
 
-    @FindBy(css = "div.span12 tbody:nth-of-type(1)")
+    @FindBy(css = "div.span12 tbody:nth-of-type(1) tr")
     private List<Product> products;
 
-    @FindBy(css = "div input:nth-of-type(3)")
+    @FindBy(css = "div.form-actions input:nth-of-type(3)")
     private WebElement clearCartButton;
 
-    @FindBy(css = "div input:nth-of-type(1)")
+    @FindBy(css = "div.form-actions input:nth-of-type(1)")
     private WebElement backButton;
 
-    @FindBy(css = "div input:nth-of-type(2)")
+    @FindBy(css = "div.form-actions input:nth-of-type(2)")
     private WebElement checkoutButton;
 
     public Double getTotalCost(){
@@ -37,7 +37,7 @@ public class Cart {
     }
 
     public void clearCartButtonClick(){
-        guardHttp(clearCartButton).click();
+        clearCartButton.click();
     }
 
     public void backButtonClick(){
@@ -50,6 +50,12 @@ public class Cart {
 
     public Product getProduct(int productId){
         return products.get(productId);
+    }
+
+    public int size(){
+        if (products.get(0).getName().equals("")) //if there is not any products in cart, there is one empty product row anyway.
+            return 0;
+        return products.size();
     }
 
     public static class Product {

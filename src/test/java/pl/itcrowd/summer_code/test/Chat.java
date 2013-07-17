@@ -4,6 +4,9 @@ import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
+import static org.jboss.arquillian.graphene.Graphene.guardXhr;
+import static org.jboss.arquillian.graphene.Graphene.waitAjax;
+import static org.jboss.arquillian.graphene.Graphene.waitGui;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,35 +17,66 @@ import static org.jboss.arquillian.graphene.Graphene.guardHttp;
  */
 public class Chat {
 
-    @FindBy(css = "#row_0 div:nth-of-type(1) div:nth-of-type(2) div:nth-of-type(2) div:nth-of-type(2) div:nth-of-type(2) div input:nth-of-type(1)")
+    @FindBy(css = "input.btn-success")
     private WebElement chatButton;
 
     @FindBy(id = "chargingInfoModal")
     private WebElement popupAfterChatClick;
 
-    @FindBy(css = "div.modal-footer form input:nth-of-type(2)")
+    @FindBy(css = "#chargingInfoModal div.modal-footer form input:nth-of-type(2)")
     private WebElement chatForFreeButton;
 
     @FindBy(css = "#chargingInfoModal div:nth-of-type(1) button")
     private WebElement exitChatCrossButton;
 
-    @FindBy(css = "div.modal-footer form button:nth-of-type(2)")
+    @FindBy(css = "#chargingInfoModal div.modal-footer form button:nth-of-type(2)")
     private WebElement chatForCreditsButton;
 
+    @FindBy(css = "#chargingInfoModal div.modal-footer form button:nth-of-type(1)")
+    private WebElement noButton;
+
+    @FindBy(id = "pendingModal")
+    private WebElement waitingForPsychcDialogBox;
+
+    @FindBy(css = "#pendingModal, div.modal-footer button")
+    private WebElement abandonInvitatioButton;
+
     public void chatButtonClick(){
-        guardHttp(chatButton).click();
+        chatButton.click();
+        waitAjax().until().element(chatForCreditsButton).is().visible();
     }
 
     public void chatForFreeButtonClick(){
-        guardHttp(chatForFreeButton).click();
+        chatForFreeButton.click();
+        waitAjax().until().element(waitingForPsychcDialogBox).is().visible();
     }
 
     public void exitChatCrossButtonClick(){
-        guardHttp(exitChatCrossButton).click();
+        exitChatCrossButton.click();
+        waitGui().until().element(exitChatCrossButton).is().not().visible();
     }
 
-    public void charForCreditsButtonClick(){
-        guardHttp(chatForCreditsButton).click();
+    public void chatForCreditsButtonClick(){
+        chatForCreditsButton.click();
+        waitAjax().until().element(waitingForPsychcDialogBox).is().visible();
+    }
+
+    public void noButtonClick(){
+        noButton.click();
+        waitGui().until().element(noButton).is().not().visible();
+    }
+
+    public boolean isPopUpBoxDisplayed(){
+        return popupAfterChatClick.isDisplayed();
+    }
+
+    public boolean isWaitingForPsychicDisplayed(){
+        return waitingForPsychcDialogBox.isDisplayed();
+    }
+
+    public void abandonInvitationButtonClick(){
+        abandonInvitatioButton.click();
+        waitAjax().until().element(waitingForPsychcDialogBox).is().not().visible();
     }
 }
 
