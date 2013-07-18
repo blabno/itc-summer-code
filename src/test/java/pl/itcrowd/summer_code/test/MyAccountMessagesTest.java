@@ -2,9 +2,20 @@ package pl.itcrowd.summer_code.test;
 
 import junit.framework.Assert;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.context.GrapheneContext;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,17 +24,20 @@ import org.openqa.selenium.WebDriver;
  * Time: 11:31
  * To change this template use File | Settings | File Templates.
  */
+@RunWith(Arquillian.class)
 public class MyAccountMessagesTest {
 
     @Drone
-    WebDriver browser;
+    WebDriver driver;
+
+    @Page
+    MyAccountMessages accountMessages;
+
+    @Page
+    LoginPage loginPage;
 
     @Before
     public void beforeTests(){
-        //You must be logged in
-        //Use e.g. this passes:
-        //email: customertest2@itcrowd.pl
-        //password: aaaaaa
     }
 
     /**
@@ -41,7 +55,17 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void newMessageButtonTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
+        //when
+        accountMessages.newClick();
+        //then
+        assertTrue(driver.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private/createMessage?userId"));
     }
 
     /**
@@ -59,7 +83,17 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void mailboxButtonTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
+        //when
+        accountMessages.emailClick();
+        //then
+        assertTrue(driver.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private?p=MAILBOX"));
     }
 
     /**
@@ -76,7 +110,19 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void emailNewRequiredFieldsTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.setSubject("test");
+        accountMessages.sendMessageClick();
+        String errorMessage = accountMessages.getEmptyRecipientMessage();
+        //then
+        assertEquals("value is required",accountMessages.getEmptyRecipientMessage());
     }
 
     /**
@@ -94,7 +140,18 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void mailboxRemoveWhenEmptyTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
+        //when
+        accountMessages.removeClick();
+        //then
+        assertEquals("Select some items!",accountMessages.getPopUpMessage());
+
     }
 
     /**
@@ -114,7 +171,22 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void sendMessageToPsychicTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.triggerFormChangeEvent();
+        accountMessages.recipient1Click();
+        accountMessages.setSubject("kkkk");
+        accountMessages.setContent("test");
+        accountMessages.sendMessageClick();
+        //then
+        assertEquals("Message sent",accountMessages.getPopUpMessage());
+
     }
 
     /**
@@ -132,7 +204,18 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void readSentMessageTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
+        //when
+        accountMessages.checkboxClick(0);
+        accountMessages.readClick(0);
+        //then
+        assertTrue(driver.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private/showMessage?threadId"));
     }
 
     /**
@@ -150,7 +233,20 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void deleteMessageTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
+        //when
+        int sizeOfMessages = accountMessages.getSizeOfMessages();
+        accountMessages.checkboxClick(0);
+        accountMessages.removeClick();
+        //then
+        assertTrue(sizeOfMessages != accountMessages.getSizeOfMessages());
+
     }
 
     /**
@@ -168,7 +264,19 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void cancelWritingMessageTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.recipient1Click();
+        accountMessages.cancelClick();
+        boolean result = accountMessages.isPopUpAfterCancelDisplayed();
+        //then
+        assertFalse(result);
     }
 
     /**
@@ -187,7 +295,8 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void addAttachmentTest(){
-        Assert.fail("Not implemented yet");
+        //Test should be done manually
+
     }
 
     /**
@@ -207,7 +316,7 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void attachmentWrongFormatTest(){
-        Assert.fail("Not implemented yet");
+        //Test should be done manually
     }
 
     /**
@@ -227,7 +336,22 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void saveChangesPopUp_Cancel_Test(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.triggerFormChangeEvent();
+        accountMessages.recipient1Click();
+        accountMessages.cancelClick();
+        accountMessages.popUpCancelClick();
+        String currentUrl = driver.getCurrentUrl();
+        //then
+        assertFalse(accountMessages.isPopUpAfterCancelDisplayed());
+        assertTrue(currentUrl.startsWith("https://itcrowd.pl/vop/private/createMessage"));
     }
 
     /**
@@ -247,7 +371,22 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void saveChangesPopUp_No_Test(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.triggerFormChangeEvent();
+        accountMessages.recipient1Click();
+        accountMessages.cancelClick();
+        accountMessages.popUpNoClick();
+        //then
+        assertFalse(accountMessages.isPopUpAfterCancelDisplayed());
+        assertEquals("https://itcrowd.pl/vop/private?p=MAILBOX", driver.getCurrentUrl());
+
     }
 
     /**
@@ -267,6 +406,20 @@ public class MyAccountMessagesTest {
      */
     @Test
     public void saveChangesPopUp_Yes_Test(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
+        //when
+        accountMessages.triggerFormChangeEvent();
+        accountMessages.recipient1Click();
+        accountMessages.cancelClick();
+        accountMessages.popUpYesClick();
+        //then
+        assertFalse(accountMessages.isPopUpAfterCancelDisplayed());
+        assertEquals("https://itcrowd.pl/vop/private/createMessage", driver.getCurrentUrl());
     }
 }

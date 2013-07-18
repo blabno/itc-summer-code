@@ -2,9 +2,15 @@ package pl.itcrowd.summer_code.test;
 
 import junit.framework.Assert;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,10 +19,14 @@ import org.openqa.selenium.WebDriver;
  * Time: 09:48
  * To change this template use File | Settings | File Templates.
  */
+@RunWith(Arquillian.class)
 public class LoginPageTest {
 
     @Drone
-    WebDriver browser;
+    WebDriver driver;
+
+    @Page
+    LoginPage loginPage;
 
     @Before
     public void beforeTests(){
@@ -39,7 +49,15 @@ public class LoginPageTest {
      */
     @Test
     public void logInTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        //then
+        assertTrue(loginPage.isLoggedIn());
     }
 
     /**
@@ -58,7 +76,16 @@ public class LoginPageTest {
      */
     @Test
     public void emptyEmailAndPassField(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.setEmailInput("");
+        loginPage.setPasswordInput("");
+        loginPage.submitButtonClick();
+        //then
+        assertTrue(loginPage.isEmptyPasswordMessageDisplayed());
+        assertTrue(loginPage.isEmptyEmailMessageDisplayed());
     }
 
     /**
@@ -79,7 +106,14 @@ public class LoginPageTest {
      */
     @Test
     public void emptyPassFieldOnlyTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.setEmailInput("test");
+        loginPage.submitButtonClick();
+        //then
+        assertEquals("Password is required", loginPage.getPopUpText(0));
     }
 
     /**
@@ -99,7 +133,15 @@ public class LoginPageTest {
      */
     @Test
     public void emptyEmailFieldOnlyTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.setPasswordInput("test");
+        loginPage.submitButtonClick();
+        //then
+        assertEquals("Email is required", loginPage.getPopUpText(0));
+
     }
 
     /**
@@ -119,7 +161,15 @@ public class LoginPageTest {
      */
     @Test
     public void wrongEmailOrPasswordTypedTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.setEmailInput("test");
+        loginPage.setPasswordInput("test");
+        loginPage.submitButtonClick();
+        //then
+        assertEquals("Authorization failed!", loginPage.getPopUpText(0));
     }
 
     /**
@@ -137,7 +187,14 @@ public class LoginPageTest {
      */
     @Test
     public void registerAsCustomerLinkTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.registerAsCustomerClick();
+        String currentUrl = driver.getCurrentUrl();
+        //then
+        assertTrue(currentUrl.startsWith("https://itcrowd.pl/vop/register"));
     }
 
     /**
@@ -155,7 +212,14 @@ public class LoginPageTest {
      */
     @Test
     public void registerAsPsychicLinkTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.registerAsPsychicClick();
+        String currentUrl = driver.getCurrentUrl();
+        //then
+        assertTrue(currentUrl.startsWith("https://itcrowd.pl/vop/view/registerPsychic.jsf"));
     }
 
     /**
@@ -173,7 +237,14 @@ public class LoginPageTest {
      */
     @Test
     public void forgotYourPasswordTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.forgotYourPasswordLinkClick();
+        String currentUrl = driver.getCurrentUrl();
+        //then
+        assertTrue(currentUrl.startsWith("https://itcrowd.pl/vop/view/remindPassword.jsf"));
     }
 
     /**
@@ -191,6 +262,13 @@ public class LoginPageTest {
      */
     @Test
     public void resendActivationEmailTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        //when
+        loginPage.resendActivationMailClick();
+        String currentUrl = driver.getCurrentUrl();
+        //then
+        assertTrue(currentUrl.startsWith("https://itcrowd.pl/vop/view/resendToken.jsf"));
     }
 }
