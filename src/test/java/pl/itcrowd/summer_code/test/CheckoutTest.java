@@ -24,6 +24,8 @@ public class CheckoutTest {
     @Page
     ProductDetails productDetails;
 
+    @Page
+    Cart cart;
 
     /**TERMS
      * User have product/s in cart want to order items but he didn't set personal details
@@ -45,7 +47,7 @@ public class CheckoutTest {
        driver.navigate().to("https://itcrowd.pl/vop/product/55");
        productDetails.addToCartClick();
        //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
        //then
         assertEquals("https://itcrowd.pl/vop/private/userProfileDetails",driver.getCurrentUrl());
 
@@ -70,7 +72,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         //then
         assertEquals("You have insufficient funds to pay for this order.",checkout.getAlertErrorMessage());
 
@@ -96,7 +98,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         //then
         assertEquals("test",checkout.getFirstName());
         assertEquals("test",checkout.getLastName());
@@ -124,7 +126,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         double totalCost = checkout.getTotalCost();
 
         checkout.buyMoreCreditsButtonClick();
@@ -159,7 +161,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         //then
         assertEquals(15.00, checkout.getTotalCost());
 
@@ -184,7 +186,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         //then
         assertEquals("1",checkout.getQuantity(0));
     }
@@ -214,8 +216,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
         //when
-        //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         checkout.checkboxClick();
         checkout.setShippingPrice("10");
         checkout.setShippingMessage("test");
@@ -246,7 +247,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         checkout.cancelCheckoutButtonClick();
         //then
         assertEquals("https://itcrowd.pl/vop/cart",driver.getCurrentUrl());
@@ -274,7 +275,7 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
         //when
-        driver.navigate().to("https://itcrowd.pl/vop/private/checkout");
+        cart.checkoutButtonClick();
         checkout.submitOrderButtonClick();
         //then
         assertEquals("You don't have sufficient funds to pay for this order!",checkout.getInsufficientCreditsPopUpText());

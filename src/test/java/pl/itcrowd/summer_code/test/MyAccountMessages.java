@@ -235,7 +235,7 @@ public class MyAccountMessages {
         public void checkboxClick()
         {
             chceckbox.click();
-            waitGui().until().element(chceckbox).is().selected();
+
         }
 
         public void readClick()

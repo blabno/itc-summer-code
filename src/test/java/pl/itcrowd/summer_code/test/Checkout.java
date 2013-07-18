@@ -201,11 +201,10 @@ public class Checkout {
     }
 
     public void submitOrderButtonClick(){
-        submitOrderButton.click();
+        guardHttp(submitOrderButton).click();
     }
 
     public String getInsufficientCreditsPopUpText(){
-       // waitGui().until().element(noMoneyInfo).is().visible();
         return noMoneyInfo.getText();
     }
 
@@ -226,7 +225,7 @@ public class Checkout {
         return itemsForOrder.get(index).getQuantity();
     }
     public void checkboxClick(){
-       // waitGui().until().element(checkbox).is().visible();
+
         checkbox.click();
         waitGui().until().element(checkbox).is().selected();
     }
