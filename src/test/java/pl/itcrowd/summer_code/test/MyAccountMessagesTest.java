@@ -60,9 +60,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
-        //when
         accountMessages.newClick();
         //then
         assertTrue(driver.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private/createMessage?userId"));
@@ -88,9 +88,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
-        //when
         accountMessages.emailClick();
         //then
         assertTrue(driver.getCurrentUrl().startsWith("https://itcrowd.pl/vop/private?p=MAILBOX"));
@@ -115,9 +115,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
-        //when
         accountMessages.setSubject("test");
         accountMessages.sendMessageClick();
         String errorMessage = accountMessages.getEmptyRecipientMessage();
@@ -145,9 +145,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
-        //when
         accountMessages.removeClick();
         //then
         assertEquals("Select some items!",accountMessages.getPopUpMessage());
@@ -176,9 +176,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
-        //when
         accountMessages.triggerFormChangeEvent();
         accountMessages.recipient1Click();
         accountMessages.setSubject("kkkk");
@@ -209,9 +209,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
-        //when
         accountMessages.checkboxClick(0);
         accountMessages.readClick(0);
         //then
@@ -238,9 +238,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private?p=MAILBOX");
-        //when
         int sizeOfMessages = accountMessages.getSizeOfMessages();
         accountMessages.checkboxClick(0);
         accountMessages.removeClick();
@@ -269,9 +269,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
-        //when
         accountMessages.recipient1Click();
         accountMessages.cancelClick();
         boolean result = accountMessages.isPopUpAfterCancelDisplayed();
@@ -342,8 +342,8 @@ public class MyAccountMessagesTest {
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
         loginPage.submitButtonClick();
-        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
         //when
+        driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
         accountMessages.triggerFormChangeEvent();
         accountMessages.recipient1Click();
         accountMessages.cancelClick();
@@ -376,9 +376,9 @@ public class MyAccountMessagesTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
-        //when
         accountMessages.triggerFormChangeEvent();
         accountMessages.recipient1Click();
         accountMessages.cancelClick();
@@ -410,10 +410,10 @@ public class MyAccountMessagesTest {
         driver.manage().deleteAllCookies();
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
+        //when
         loginPage.setPasswordInput("aaaaaa");
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/private/createMessage?userId=69");
-        //when
         accountMessages.triggerFormChangeEvent();
         accountMessages.recipient1Click();
         accountMessages.cancelClick();

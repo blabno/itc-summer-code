@@ -43,10 +43,10 @@ public class CheckoutTest {
        driver.navigate().to("https://itcrowd.pl/vop/login");
        loginPage.setEmailInput("emptyacc789@gmail.com");
        loginPage.setPasswordInput("aaaaaa");
+        //when
        loginPage.submitButtonClick();
        driver.navigate().to("https://itcrowd.pl/vop/product/55");
        productDetails.addToCartClick();
-       //when
         cart.checkoutButtonClick();
        //then
         assertEquals("https://itcrowd.pl/vop/private/userProfileDetails",driver.getCurrentUrl());
@@ -68,10 +68,10 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         //then
         assertEquals("You have insufficient funds to pay for this order.",checkout.getAlertErrorMessage());
@@ -94,10 +94,10 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         //then
         assertEquals("test",checkout.getFirstName());
@@ -122,13 +122,12 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("customerTest1@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         double totalCost = checkout.getTotalCost();
-
         checkout.buyMoreCreditsButtonClick();
         String expectedUrl = "https://itcrowd.pl/vop/private/buyCredits?predefinedQuantity=" + (int)totalCost;
         //then
@@ -157,10 +156,10 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         //then
         assertEquals(15.00, checkout.getTotalCost());
@@ -182,10 +181,10 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         //then
         assertEquals("1",checkout.getQuantity(0));
@@ -212,10 +211,10 @@ public class CheckoutTest {
         driver.navigate().to("https://itcrowd.pl/vop/login");
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
+        //when
         loginPage.submitButtonClick();
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         checkout.checkboxClick();
         checkout.setShippingPrice("10");
@@ -244,9 +243,9 @@ public class CheckoutTest {
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
         loginPage.submitButtonClick();
+        //when
         driver.navigate().to("https://itcrowd.pl/vop/product/1");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         checkout.cancelCheckoutButtonClick();
         //then
@@ -272,9 +271,9 @@ public class CheckoutTest {
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
         loginPage.submitButtonClick();
+        //when
         driver.navigate().to("https://itcrowd.pl/vop/product/55");
         productDetails.addToCartClick();
-        //when
         cart.checkoutButtonClick();
         checkout.submitOrderButtonClick();
         //then

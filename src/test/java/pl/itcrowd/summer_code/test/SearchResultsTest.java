@@ -54,8 +54,8 @@ public class SearchResultsTest {
         loginPage.setEmailInput("tester@itcrowd.pl");
         loginPage.setPasswordInput("aaaaaa");
         loginPage.submitButtonClick();
-        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
         //when
+        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
         searchResults.setSearchInput("asdf");
         searchResults.searchButtonClick();
         //then

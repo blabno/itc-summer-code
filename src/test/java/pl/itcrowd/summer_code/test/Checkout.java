@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.List;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
+import static org.jboss.arquillian.graphene.Graphene.guardXhr;
 import static org.jboss.arquillian.graphene.Graphene.waitGui;
 
 /**
@@ -226,19 +227,17 @@ public class Checkout {
     }
     public void checkboxClick(){
 
-        checkbox.click();
-        waitGui().until().element(checkbox).is().selected();
+        guardXhr(checkbox).click();
+
     }
     public void setShippingPrice(String newPrice)
     {
-        waitGui().until().element(checkbox).is().selected();
-        waitGui().until().element(suggestedPrice).is().visible();
+
         suggestedPrice.sendKeys(newPrice);
     }
     public void setShippingMessage(String message)
     {
-        waitGui().until().element(checkbox).is().selected();
-        waitGui().until().element(suggestedMessage).is().visible();
+
         suggestedMessage.sendKeys(message);
     }
 
