@@ -2,9 +2,15 @@ package pl.itcrowd.summer_code.test;
 
 import junit.framework.Assert;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,15 +19,18 @@ import org.openqa.selenium.WebDriver;
  * Time: 11:09
  * To change this template use File | Settings | File Templates.
  */
+@RunWith(Arquillian.class)
 public class SearchResultsTest {
     @Drone
-    WebDriver browser;
+    WebDriver driver;
+    @Page
+    SearchResults searchResults;
+    @Page
+    LoginPage loginPage;
 
     @Before
     public void beforeTests(){
-
     }
-
     /**
      * TERMS:
      * Checks if typed string is not found in system
@@ -39,7 +48,19 @@ public class SearchResultsTest {
      */
     @Test
     public void notFoundSearchEffectTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        //when
+        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
+        searchResults.setSearchInput("asdf");
+        searchResults.searchButtonClick();
+        //then
+        assertEquals("No results found!",searchResults.getPsychicNoResultFoundText());
+        assertEquals("No results found!",searchResults.getMarketplaceNoResutFoundText());
     }
 
     /**
@@ -60,7 +81,19 @@ public class SearchResultsTest {
      */
     @Test
     public void psychicFoundSearchEffectTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
+        //when
+        searchResults.setSearchInput("psychic7");
+        searchResults.searchButtonClick();
+        //then
+        assertEquals("https://itcrowd.pl/vop/view/searchResult.jsf?find=psychic7",driver.getCurrentUrl());
+        assertTrue((searchResults.psychicsFoundSize()) > 0);
     }
 
     /**
@@ -81,7 +114,20 @@ public class SearchResultsTest {
      */
     @Test
     public void emptyInputSearchEffectTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
+        //when
+        searchResults.setSearchInput("");
+        searchResults.searchButtonClick();
+        //then
+        assertEquals("https://itcrowd.pl/vop/view/searchResult.jsf?find=",driver.getCurrentUrl());
+        assertTrue((searchResults.psychicsFoundSize()) > 5);
+        assertTrue((searchResults.productsThumbnailsSize()) > 11);
     }
 
     /**
@@ -101,6 +147,19 @@ public class SearchResultsTest {
      */
     @Test
     public void productSearchTest(){
-        Assert.fail("Not implemented yet");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/view/searchResult.jsf");
+        //when
+        searchResults.setSearchInput("123");
+        searchResults.searchButtonClick();
+        //then
+        assertEquals("https://itcrowd.pl/vop/view/searchResult.jsf?find=123",driver.getCurrentUrl());
+        assertEquals("No results found!",searchResults.getPsychicNoResultFoundText());
+        assertTrue((searchResults.productsThumbnailsSize()) > 0);
     }
 }

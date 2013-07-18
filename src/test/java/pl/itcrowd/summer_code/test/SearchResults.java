@@ -15,10 +15,10 @@ public class SearchResults {
     @FindBy(id = "searchBtn")
     private WebElement searchButton;
 
-    @FindBy(css = "#wrap div:nth:of:type(2) div:nth-of-type(2) > h2")
+    @FindBy(css = "#wrap div:nth-of-type(2) div:nth-of-type(2) > h2") //?
     private WebElement psychiscNoResultsFound;
 
-    @FindBy(css = "#wrap div:nth:of:type(3) div:nth-of-type(1) > h2")
+    @FindBy(css = "#wrap div:nth-of-type(2) div:nth-of-type(1) h2") //?
     private WebElement marketplaceNoResultsFound;
 
     @FindBy(css = "#panel div.grayBorderedPanel")
@@ -27,11 +27,15 @@ public class SearchResults {
     @FindBy(css = "#rowp_0 div.span2")
     private List<Product> productsFound;
 
+    @FindBy(css = ".thumbnail.text-center" )
+    private List<ProductThumbnail> productsThumbnails;
+
     @FindBy(css = "#wrap div:nth:of:type(2) div:nth-of-type(2) div:nth-of-type(3) div:nth-of-type(1) a ")
     private List<WebElement> psychicsScroller;
 
     @FindBy(css = "#wscrollerProducts > a ")
     private List<WebElement> productsScroller;
+
 
     public void setSearchInput(String string){
         searchInput.clear();
@@ -81,7 +85,6 @@ public class SearchResults {
     public void productsScrollerIconClick(int index){
         guardHttp(productsScroller.get(index)).click();
     }
-
     public static class Psychic {
 
         @FindBy(css = "div.row-fluid h4.psychicNickname")
@@ -105,5 +108,13 @@ public class SearchResults {
         public String getProductPrice(){
             return productPrice.getText();
         }
+    }
+
+    public static class ProductThumbnail{
+        @FindBy(tagName= "src")
+        private WebElement thumbnail;
+    }
+    public int productsThumbnailsSize(){
+        return productsThumbnails.size();
     }
 }

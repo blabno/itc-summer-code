@@ -5,7 +5,10 @@ import org.jboss.arquillian.graphene.enricher.findby.FindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.List;
+
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
+import static org.jboss.arquillian.graphene.Graphene.guardXhr;
 import static org.jboss.arquillian.graphene.Graphene.waitGui;
 
 /**
@@ -17,10 +20,10 @@ import static org.jboss.arquillian.graphene.Graphene.waitGui;
  */
 public class Checkout {
 
-    @FindBy(css = "#rF div:nth-of-type(14) input:nth-of-type(1)")
+    @FindBy(css = "body.cart div.span12 div.form-actions .pull-right")
     private WebElement submitOrderButton;
 
-    @FindBy(css = ".rf-ntf-sum")
+    @FindBy(css = "div.rf-ntf-cnt")
     private WebElement noMoneyInfo;
 
     @FindBy(id = "rF:firstName:i")
@@ -53,10 +56,13 @@ public class Checkout {
     @FindBy(css = "#rf\\:region\\:i option:nth-of-type(15)")
     private WebElement personalRegion;
 
+    @FindBy(css = ".alert-error")
+    private WebElement alertError;
+
     @FindBy(tagName = "value")
     private WebElement value;
-
-    @FindBy(css = "#rf div:nth-of-type(14) input:nth-of-type(1)")
+    //#rf div:nth-of-type(14) input:nth-of-type(1)
+    @FindBy(css = ".pull-left")
     private WebElement cancelCheckoutButton;
 
     @FindBy(css = "html body div:nth-of-type(4) div")
@@ -71,6 +77,63 @@ public class Checkout {
     @FindBy(css = "#wrap div:nth-of-type(1) div div div:nth-of-type(1) form ul li:nth-of-type(6) a")
     private WebElement creditsHeld;
 
+    @FindBy(css = "body.cart div:nth-of-type(11) div:nth-of-type(1) input")
+    private WebElement checkbox;
+
+    @FindBy(css = "body.cart div:nth-of-type(12) div:nth-of-type(1) input")
+    private WebElement suggestedPrice;
+
+    @FindBy(css = "body.cart div:nth-of-type(13) div:nth-of-type(1) textarea")
+    private WebElement suggestedMessage;
+
+    @FindBy(className = "rf-dt-fst-r")
+    private List<itemForOrder> itemsForOrder;
+
+    public static class itemForOrder{
+
+        @FindBy(css = ":nth-of-type(1)")
+        private WebElement product;
+
+        @FindBy(css = ":nth-of-type(2)")
+        private WebElement quantity;
+
+        @FindBy(css = ":nth-of-type(3)")
+        private WebElement pricePerUnit;
+
+        @FindBy(css = ":nth-of-type(4)")
+        private WebElement totalPrice;
+
+        @FindBy(css = ":nth-of-type(5)")
+        private WebElement shippingCost;
+
+        @FindBy(css = ":nth-of-type(6)")
+        private WebElement priceInclShipping;
+
+        public String getProduct()
+        {
+            return product.getText();
+        }
+        public String getQuantity()
+        {
+            return quantity.getText();
+        }
+        public String getPricePerUnit()
+        {
+            return pricePerUnit.getText();
+        }
+        public String getTotalPrice()
+        {
+            return totalPrice.getText();
+        }
+        public String getShippingCost()
+        {
+            return shippingCost.getText();
+        }
+        public String getPriceInclShipping()
+        {
+            return priceInclShipping.getText();
+        }
+    }
     public String getFirstName(){
         return personalFirstName.getText();
     }
@@ -143,16 +206,41 @@ public class Checkout {
     }
 
     public String getInsufficientCreditsPopUpText(){
-        new Actions(GrapheneContext.getProxy()).moveToElement(noMoneyInfo).build().perform();
-        waitGui().until().element(noMoneyInfo).is().visible();
         return noMoneyInfo.getText();
     }
 
-    public void buyMoreCreditsButtonTest(){
+    public void buyMoreCreditsButtonClick(){
         guardHttp(buyMoreCreditsButton).click();
     }
 
     public void cancelCheckoutButtonClick(){
         guardHttp(cancelCheckoutButton).click();
     }
+
+    public String getAlertErrorMessage()
+    {
+        return alertError.getText();
+    }
+    public String getQuantity(int index)
+    {
+        return itemsForOrder.get(index).getQuantity();
+    }
+    public void checkboxClick(){
+
+        guardXhr(checkbox).click();
+
+    }
+    public void setShippingPrice(String newPrice)
+    {
+
+        suggestedPrice.sendKeys(newPrice);
+    }
+    public void setShippingMessage(String message)
+    {
+
+        suggestedMessage.sendKeys(message);
+    }
+
+
+
 }

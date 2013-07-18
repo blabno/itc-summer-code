@@ -1,17 +1,34 @@
 package pl.itcrowd.summer_code.test;
 
 import junit.framework.Assert;
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.WebDriver;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class CheckoutTest {
 
+    @Drone
+    WebDriver driver;
+
+    @Page
+    Checkout checkout;
+    @Page
+    LoginPage loginPage;
+    @Page
+    ProductDetails productDetails;
+
+    @Page
+    Cart cart;
 
     /**TERMS
-     * User have product/s i cart want to order items but he didn't set personal details
+     * User have product/s in cart want to order items but he didn't set personal details
      *
      * SCENARIO
      * 1.Open the checkout page (https://itcrowd.pl/vop/private/checkout).
@@ -21,7 +38,19 @@ public class CheckoutTest {
      */
     @ Test
     public void noPersonalDetailsTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+       driver.manage().deleteAllCookies();
+       driver.navigate().to("https://itcrowd.pl/vop/login");
+       loginPage.setEmailInput("emptyacc789@gmail.com");
+       loginPage.setPasswordInput("aaaaaa");
+        //when
+       loginPage.submitButtonClick();
+       driver.navigate().to("https://itcrowd.pl/vop/product/55");
+       productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+       //then
+        assertEquals("https://itcrowd.pl/vop/private/userProfileDetails",driver.getCurrentUrl());
+
     }
 
     /**TERMS
@@ -34,8 +63,19 @@ public class CheckoutTest {
      * Check if Information "You have insufficient funds to pay for this order." is displayed.
      */
     @ Test
-    public void noMoneyInfoTest(){
-        Assert.fail("Not implemented yet.");
+    public void noMoneyInfo(){
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/55");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        //then
+        assertEquals("You have insufficient funds to pay for this order.",checkout.getAlertErrorMessage());
+
     }
 
     /**TERMS
@@ -49,7 +89,19 @@ public class CheckoutTest {
      */
     @ Test
     public void noMoneyPersonalDetailsTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/55");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        //then
+        assertEquals("test",checkout.getFirstName());
+        assertEquals("test",checkout.getLastName());
     }
 
     /**TERMS
@@ -60,12 +112,27 @@ public class CheckoutTest {
      * 2.Get Total price for all products in cart
      * 2.Click on Buy Credits button
      *
-     * EXPECTED
+     * EXPECTED https://itcrowd.pl/vop/private/buyCredits?predefinedQuantity=3
      * Check if current url equals https://itcrowd.pl/vop/private/buyCredits?predefinedQuantity=<TOTAL_PRICE>.
      */
     @ Test
     public void buyMoreCreditsClickTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("customerTest1@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/55");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        double totalCost = checkout.getTotalCost();
+        checkout.buyMoreCreditsButtonClick();
+        String expectedUrl = "https://itcrowd.pl/vop/private/buyCredits?predefinedQuantity=" + (int)totalCost;
+        //then
+        assertEquals(expectedUrl,driver.getCurrentUrl());
+
     }
 
     /**TERMS
@@ -84,9 +151,20 @@ public class CheckoutTest {
      */
     @ Test
     public void totalPriceTest(){
-        Assert.fail("Not implemented yet.");
-    }
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/1");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        //then
+        assertEquals(15.00, checkout.getTotalCost());
 
+    }
     /**TERMS
      * User have 3 Test1 and 1 Test2 items in cart and he want to checkout.
      *
@@ -98,7 +176,18 @@ public class CheckoutTest {
      */
     @ Test
     public void itemsForOrderTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/1");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        //then
+        assertEquals("1",checkout.getQuantity(0));
     }
 
     /**TERMS
@@ -116,7 +205,24 @@ public class CheckoutTest {
      */
     @ Test
     public void submitOrderWithNegotiateShipmentTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        //when
+        loginPage.submitButtonClick();
+        driver.navigate().to("https://itcrowd.pl/vop/product/1");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        checkout.checkboxClick();
+        checkout.setShippingPrice("10");
+        checkout.setShippingMessage("test");
+        checkout.submitOrderButtonClick();
+        //then
+        assertEquals("https://itcrowd.pl/vop/private/orderList",driver.getCurrentUrl());
+
     }
 
     /**TERMS
@@ -131,7 +237,20 @@ public class CheckoutTest {
      */
     @ Test
     public void cancelClickTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        //when
+        driver.navigate().to("https://itcrowd.pl/vop/product/1");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        checkout.cancelCheckoutButtonClick();
+        //then
+        assertEquals("https://itcrowd.pl/vop/cart",driver.getCurrentUrl());
+
     }
 
     /**TERMS
@@ -146,7 +265,18 @@ public class CheckoutTest {
      */
     @ Test
     public void SubmitOrderClickTest(){
-        Assert.fail("Not implemented yet.");
+        //given
+        driver.manage().deleteAllCookies();
+        driver.navigate().to("https://itcrowd.pl/vop/login");
+        loginPage.setEmailInput("tester@itcrowd.pl");
+        loginPage.setPasswordInput("aaaaaa");
+        loginPage.submitButtonClick();
+        //when
+        driver.navigate().to("https://itcrowd.pl/vop/product/55");
+        productDetails.addToCartClick();
+        cart.checkoutButtonClick();
+        checkout.submitOrderButtonClick();
+        //then
+        assertEquals("You don't have sufficient funds to pay for this order!",checkout.getInsufficientCreditsPopUpText());
     }
-
 }

@@ -39,7 +39,7 @@ public class LoginPage {
     @FindBy(css = "#lF div.form-actions div:nth-of-type(2) > a")
     private WebElement forgotYourPasswordLink;
 
-    @FindBy(css = "#lF div.form-actions dLinkiv:nth-of-type(2) > a")
+    @FindBy(css = "#lF div.form-actions div:nth-of-type(3) > a")
     private WebElement resendActivationMailLink;
 
 
