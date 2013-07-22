@@ -25,7 +25,7 @@ public class UserTest {
     @Deployment
     public static Archive createDeployment()
     {
-        return ShrinkWrap.create(WebArchive.class, "UserTest.war").addClasses(User.class, UserDAO.class).addAsResource("META-INF/persistence.xml");
+        return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(User.class, UserDAO.class).addAsResource("META-INF/persistence.xml");
     }
 
     @Test
