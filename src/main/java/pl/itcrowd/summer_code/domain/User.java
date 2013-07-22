@@ -1,9 +1,18 @@
 package pl.itcrowd.summer_code.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "T_USER")
 public class User {
 
     private String email;
 
+    @Id
+    @GeneratedValue
     private Long id;
 
     public User()
